@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Samickshaa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      background: lavender;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .countdown-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 2.5rem;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .popup {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 999;
+      text-align: center;
+      animation: fadeInOut 5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+
+    .popup h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .popup img {
+      max-width: 250px;
+      border-radius: 15px;
+      animation: slideLeftRight 5s ease-in-out infinite;
+    }
+
+    @keyframes slideLeftRight {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(30px); }
+    }
+
+    .message-box {
+      max-width: 90%;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: none;
+      font-size: 1.2rem;
+      white-space: pre-wrap;
+      position: relative;
+    }
+
+    .show-message-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .gallery a img {
+      width: 120px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .gallery a img:hover {
+      transform: scale(1.1);
+    }
+
+    .confetti, .side-confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #ff69b4;
+      z-index: 1000;
+    }
+
+    .confetti {
+      animation: confetti-fall 3s ease-in forwards;
+    }
+
+    .side-confetti {
+      animation: confetti-side 3s ease-in forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateX(0) translateY(0); opacity: 1; }
+      100% { transform: translateX(200px) translateY(100vh); opacity: 0; }
+    }
+
+    @keyframes confetti-side {
+      0% { transform: translateX(0) translateY(0); opacity: 1; }
+      100% { transform: translateX(100vw) translateY(200px); opacity: 0; }
+    }
+
+    .cake {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 120px;
+      z-index: 999;
+      display: none;
+      animation: floatCake 3s ease-in-out infinite;
+    }
+
+    @keyframes floatCake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 40px;
+      z-index: 999;
+      animation: floatBalloon 6s ease-in forwards;
+    }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      #countdown {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bdSong" autoplay loop controls style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 1001; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+  <source src="happy-birthday-357371.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+<div class="countdown-container" id="countdownContainer">
+  <div id="countdown"></div>
+</div>
+
+<div class="popup" id="popup">
+  <h1>🎉 Happy Birthday Samickshaa 🎉</h1>
+  <img src="samipic.jpg" alt="Samickshaa">
+</div>
+
+<button class="show-message-button" id="showMessageBtn" style="display: none;">Read Message</button>
+<div class="message-box" id="messageBox">
+🎉🎂 Happy Birthday, Samickshaa 💙🎈
+
+Even though I'm not there with you today, my heart is right beside you. 💌🌍
+You're not just my sister, you're my best friend 🤝, my secret-keeper 🧺, and the one person who always gets me — no matter what. 💖
+I miss you so much today… more than words can ever say. 😔💭
+Every little thing reminds me of you — our talks 🗣️, our laughter 😂, the way I could tell you anything and everything. 🥺💬
+It feels incomplete without celebrating this day together 🎊, but I hope you can feel all the love I’m sending your way. 💖📦✨
+
+You mean the world to me, Samickshaa. 🌎👑
+No distance can change the bond we share. 🔗❤️
+Have the most beautiful birthday, filled with smiles 😊, surprises 🎁, and all the happiness you deserve. 🌈🌸
+I’m counting down the days till I see you again. 🗖️⏳ Love you more than you’ll ever know 💘
+
+🎂🎁 Happy Birthday, my always & forever girl 💫👧🏻💗
+</div>
+
+<div class="gallery" id="gallery">
+  <a href="vs1.jpg" target="_blank"><img src="vs1.jpg" alt="Memory 1"></a>
+  <a href="vs2.jpg" target="_blank"><img src="vs2.jpg" alt="Memory 2"></a>
+  <a href="vs3.jpg" target="_blank"><img src="vs3.jpg" alt="Memory 3"></a>
+  <a href="vs4.jpg" target="_blank"><img src="vs4.jpg" alt="Memory 4"></a>
+  <a href="vs5new.jpg" target="_blank"><img src="vs5new.jpg" alt="Memory 5"></a>
+  <a href="vs6.jpg" target="_blank"><img src="vs6.jpg" alt="Memory 6"></a>
+  <a href="vs7.jpg" target="_blank"><img src="vs7.jpg" alt="Memory 7"></a>
+</div>
+<img src="download.jpeg" id="birthdayCake" class="cake" alt="Birthday Cake">
+
+
+<script>
+  const countdown = document.getElementById('countdown');
+  const countdownContainer = document.getElementById('countdownContainer');
+  const popup = document.getElementById('popup');
+  const showMessageBtn = document.getElementById('showMessageBtn');
+  const messageBox = document.getElementById('messageBox');
+  const gallery = document.getElementById('gallery');
+  const cake = document.getElementById('birthdayCake');
+
+  const birthdayDate = new Date("2025-08-06T00:00:00").getTime();
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = birthdayDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    if (distance < 0) {
+      clearInterval(timer);
+      countdownContainer.style.display = "none";
+      popup.style.display = "flex";
+
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDelay = `${Math.random() * 1.5}s`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+
+      setTimeout(() => {
+        popup.style.display = "none";
+        showMessageBtn.style.display = "block";
+        gallery.style.display = "flex";
+        cake.style.display = "block";
+
+        for (let i = 0; i < 20; i++) {
+          const balloon = document.createElement('img');
+          balloon.src = 'pink_bbb-removebg-preview.png';
+          balloon.className = 'balloon';
+          balloon.style.left = `${Math.random() * 100}vw`;
+          balloon.style.animationDelay = `${Math.random() * 3}s`;
+          document.body.appendChild(balloon);
+          setTimeout(() => balloon.remove(), 7000);
+        }
+
+        for (let i = 0; i < 100; i++) {
+          const sideConfetti = document.createElement('div');
+          sideConfetti.className = 'side-confetti';
+          sideConfetti.style.top = `${Math.random() * 100}vh`;
+          sideConfetti.style.left = `-${Math.random() * 20}px`;
+          sideConfetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+          sideConfetti.style.animationDelay = `${Math.random() * 1.5}s`;
+          document.body.appendChild(sideConfetti);
+          setTimeout(() => sideConfetti.remove(), 3000);
+        }
+
+      }, 5000);
+    }
+  }, 1000);
+
+  showMessageBtn.addEventListener('click', () => {
+    messageBox.style.display = 'block';
+    showMessageBtn.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
