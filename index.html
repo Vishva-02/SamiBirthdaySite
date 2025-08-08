@@ -181,11 +181,10 @@
 </head>
 <body>
 
-<audio id="bdSong" autoplay loop controls style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 1001; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+<audio id="bdSong" autoplay loop style="display: none;">
   <source src="happy-birthday-357371.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-
 
 <div class="countdown-container" id="countdownContainer">
   <div id="countdown"></div>
@@ -253,6 +252,8 @@ I’m counting down the days till I see you again. 🗖️⏳ Love you more than
       countdownContainer.style.display = "none";
       popup.style.display = "flex";
 
+      document.getElementById("bdSong").style.display= "block";
+      
       for (let i = 0; i < 100; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
